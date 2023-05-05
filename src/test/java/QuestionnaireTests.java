@@ -55,7 +55,5 @@ public class QuestionnaireTests {
         WebElement sport = driver.findElement(By.className("moj-select")).findElement(By.cssSelector("option[value='koszykowka']"));
         sport.click();
 
-
     }
-
 }
