@@ -3,8 +3,6 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class WebDriverManagerTest {
 
@@ -44,7 +42,7 @@ public class WebDriverManagerTest {
     }
 
     @Test
-    public void secondTest(){
+    public void secondTest() {
         driver.get("http://www.seleniumdemo.com");
         driver.findElement(By.xpath("//span[text()='Shop']")).click();
         WebElement seleniumProduct = driver.findElement(By.xpath("//h2[text()='Java Selenium WebDriver']"));

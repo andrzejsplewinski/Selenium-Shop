@@ -1,8 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +28,10 @@ public class SelectorTest {
 //        driver.get("https://testeroprogramowania.github.io/selenium/basics.html");
 
     }
+    @AfterEach
+    void teardown(){
+        driver.quit();
+    }
 
     @Test
     public void findElements() {
@@ -57,7 +58,7 @@ public class SelectorTest {
         searchBox.submit();
 
         String clickLink = Keys.chord(Keys.CONTROL, Keys.ENTER);
-        driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a")).sendKeys(clickLink);
+        driver.findElement(By.xpath("//a[contains(@href, 'selenium.dev')]")).sendKeys(clickLink);
 
         List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
         String newTabHandle = windowHandles.get(1);
