@@ -38,7 +38,7 @@ public class QuestionnaireTests {
     @Test
     public void FillingTheQuestionnaireWithCorrectData() throws InterruptedException {
 
-        driver.findElement(By.id("ImiÍ")).sendKeys("Jan");
+        driver.findElement(By.id("Imiƒô")).sendKeys("Jan");
         driver.findElement(By.id("Nazwisk")).sendKeys("Kowalski");
         driver.findElement(By.cssSelector("input[type='radio'][value='Kobieta']")).click();
         driver.findElement(By.cssSelector("input[id='Wiek'][value='30-39']")).click();
@@ -67,11 +67,11 @@ public class QuestionnaireTests {
         WebElement info = driver.findElement(By.id("info"));
         Assertions.assertTrue(info.isDisplayed());
         Assertions.assertEquals(
-                "Wys≥ane dane :\n" +
+                "Wys≈Çane dane :\n" +
                         "\n" +
-                        "ImiÍ : Jan\n" +
+                        "Imiƒô : Jan\n" +
                         "Nazwisko : Kowalski\n" +
-                        "P≥eÊ : Kobieta\n" +
+                        "P≈Çeƒá : Kobieta\n" +
                         "Wiek : 30-39\n" +
                         "Produkty jakie szukasz:\n" +
                         "Rakieta tenisowa\n" +
@@ -95,7 +95,7 @@ public class QuestionnaireTests {
         WebElement alertButton = driver.findElement(By.id("alertPrzycisk"));
         alertButton.click();
         Alert alert = driver.switchTo().alert();
-        Assertions.assertEquals("To jest okno ÑAllertî strony www.selenium-shop.pl", alert.getText());
+        Assertions.assertEquals("To jest okno ‚ÄûAllert‚Äù strony www.selenium-shop.pl", alert.getText());
         alert.accept();
     }
 
@@ -105,7 +105,7 @@ public class QuestionnaireTests {
         alertButton.click();
         Alert promptAlert = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.alertIsPresent());
         promptAlert.sendKeys("Madrid");
-        Assertions.assertEquals("Podaj nazwÍ miasta w ktÛym mieszkasz", promptAlert.getText());
+        Assertions.assertEquals("Podaj nazwƒô miasta w kt√≥ym mieszkasz", promptAlert.getText());
         promptAlert.accept();
     }
 
@@ -114,10 +114,10 @@ public class QuestionnaireTests {
         WebElement confirmButton = driver.findElement(By.id("confimationAlertPrzycisk"));
         confirmButton.click();
         Alert confirmAlert = driver.switchTo().alert();
-        Assertions.assertEquals("Czy chcesz zatwierdziÊ operacjÍ usuniÍcia Twoich danych osobowych?", confirmAlert.getText());
+        Assertions.assertEquals("Czy chcesz zatwierdziƒá operacjƒô usuniƒôcia Twoich danych osobowych?", confirmAlert.getText());
         confirmAlert.accept();
         confirmButton.click();
-        Assertions.assertEquals("Czy chcesz zatwierdziÊ operacjÍ usuniÍcia Twoich danych osobowych?", confirmAlert.getText());
+        Assertions.assertEquals("Czy chcesz zatwierdziƒá operacjƒô usuniƒôcia Twoich danych osobowych?", confirmAlert.getText());
         confirmAlert.dismiss();
     }
 
@@ -140,24 +140,24 @@ public class QuestionnaireTests {
     @Test
     public void DoubleClickAlert() {
         Actions action = new Actions(driver);
-        action.doubleClick(driver.findElement(By.cssSelector("input[value='Dwuklik pokaø komunikat']"))).perform();
+        action.doubleClick(driver.findElement(By.cssSelector("input[value='Dwuklik poka≈º komunikat']"))).perform();
         Assertions.assertTrue(driver.findElement(By.id("p-doubleClick")).isDisplayed());
     }
 
     @Test
     public void OpenNewWindow() {
         String currentWindow = driver.getWindowHandle();
-        driver.findElement(By.cssSelector("input[value='OtwÛrz nowe okno']")).click();
+        driver.findElement(By.cssSelector("input[value='Otw√≥rz nowe okno']")).click();
         Set<String> windowNames = driver.getWindowHandles();
         for (String window : windowNames) {
             if (!window.equals(currentWindow)) {
                 driver.switchTo().window(window);
             }
         }
-        Assertions.assertEquals("Warto wykonywaÊ testy automatyczne ñ Selenium Shop Automatyzacja TestÛw", driver.getTitle());
+        Assertions.assertEquals("Warto wykonywaƒá testy automatyczne ‚Äì Selenium Shop Automatyzacja Test√≥w", driver.getTitle());
         driver.findElement(By.id("imie_nazwisko")).sendKeys("Andrzej S");
-        driver.findElement(By.cssSelector("input[value='Zamknij okno przeglπdarki']")).click();
+        driver.findElement(By.cssSelector("input[value='Zamknij okno przeglƒÖdarki']")).click();
         driver.switchTo().window(currentWindow);
-        Assertions.assertEquals("Ankieta ñ Selenium Shop Automatyzacja TestÛw", driver.getTitle());
+        Assertions.assertEquals("Ankieta ‚Äì Selenium Shop Automatyzacja Test√≥w", driver.getTitle());
     }
 }

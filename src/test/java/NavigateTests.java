@@ -30,32 +30,32 @@ public class NavigateTests {
     @Test
     public void NavigateToQuestionnaire() {
         driver.navigate().to("http://www.selenium-shop.pl/o-nas");
-        Assertions.assertEquals("Ankieta – Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Ankieta â€“ Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
         driver.navigate().back();
-        Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
     }
 
     @Test
     public void NavigateToCart() {
         driver.navigate().to("http://www.selenium-shop.pl/koszyk/");
-        Assertions.assertEquals("Koszyk – Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Koszyk â€“ Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
         driver.navigate().back();
-        Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
     }
 
     @Test
     public void NavigateToMyAccount() {
         driver.navigate().to("http://www.selenium-shop.pl/moje-konto/");
-        Assertions.assertEquals("Moje konto – Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Moje konto â€“ Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
         driver.navigate().back();
-        Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
     }
 
     @Test
     public void NavigateToShop() {
         driver.navigate().to("http://www.selenium-shop.pl/sklep/");
-        Assertions.assertEquals("Produkty – Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Produkty â€“ Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
         driver.navigate().back();
-        Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
+        Assertions.assertEquals("Selenium Shop Automatyzacja TestÃ³w", driver.getTitle());
     }
 }

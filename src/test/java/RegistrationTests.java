@@ -37,12 +37,12 @@ public class RegistrationTests {
     }
 
     @Test
-    @Description("Próba wys³ania formularza bez wype³nienia pola e-mail")
+    @Description("PrÃ³ba wysÅ‚ania formularza bez wypeÅ‚nienia pola e-mail")
     public void RegistrationNoData() {
 
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("B³¹d: Podaj poprawny adres e-mail.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("BÅ‚Ä…d: Podaj poprawny adres e-mail.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -56,18 +56,18 @@ public class RegistrationTests {
 
         Assertions.assertTrue(driver.findElement(By.className("woocommerce-MyAccount-navigation")).isDisplayed());
 
-        driver.findElement(By.linkText("Wyloguj siê")).click();
+        driver.findElement(By.linkText("Wyloguj siÄ™")).click();
         Assertions.assertTrue(driver.findElement(By.xpath(CONFIRMREGISTRATION)).isDisplayed());
     }
 
     @Test
-    @Description("Próba logowania 2x tym samym mailem")
+    @Description("PrÃ³ba logowania 2x tym samym mailem")
     public void TwiceWithTheSameEmail() {
         driver.findElement(By.id(EMAILFIELD)).sendKeys("username@gmail.com");
 
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("B³¹d: Konto z tym adresem e-mail ju¿ istnieje. Zaloguj siê.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("BÅ‚Ä…d: Konto z tym adresem e-mail juÅ¼ istnieje. Zaloguj siÄ™.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -79,16 +79,16 @@ public class RegistrationTests {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("Uwzglêdnij znak „@” w adresie e-mail. W adresie „username.gmail.com” brakuje znaku „@”.", msg);
+        Assertions.assertEquals("UwzglÄ™dnij znak â€@â€ w adresie e-mail. W adresie â€username.gmail.comâ€ brakuje znaku â€@â€.", msg);
     }
 
     @Test
-    @Description("Zbyt d³ugi adres mail")
+    @Description("Zbyt dÅ‚ugi adres mail")
     public void TooLongMail() {
         driver.findElement(By.id(EMAILFIELD)).sendKeys("ussssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssser@gmail.com");
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("B³¹d: Nazwa u¿ytkownika nie mo¿e byæ d³u¿sza ni¿ 60 znaków.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("BÅ‚Ä…d: Nazwa uÅ¼ytkownika nie moÅ¼e byÄ‡ dÅ‚uÅ¼sza niÅ¼ 60 znakÃ³w.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class RegistrationTests {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("Czêœæ przed znakiem „@” nie mo¿e zawieraæ symbolu „(”.", msg);
+        Assertions.assertEquals("CzÄ™Å›Ä‡ przed znakiem â€@â€ nie moÅ¼e zawieraÄ‡ symbolu â€(â€.", msg);
     }
 
     @Test
@@ -110,6 +110,6 @@ public class RegistrationTests {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("Czêœæ przed znakiem „@” nie mo¿e zawieraæ symbolu „ ”.", msg);
+        Assertions.assertEquals("CzÄ™Å›Ä‡ przed znakiem â€@â€ nie moÅ¼e zawieraÄ‡ symbolu â€ â€.", msg);
     }
 }
