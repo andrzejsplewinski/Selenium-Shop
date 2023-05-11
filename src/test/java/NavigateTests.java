@@ -16,7 +16,7 @@ public class NavigateTests {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless","start-maximized");
+        options.addArguments("headless", "start-maximized");
         driver = new ChromeDriver(options);
         driver.get("http://www.selenium-shop.pl");
 
@@ -42,6 +42,7 @@ public class NavigateTests {
         driver.navigate().back();
         Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
     }
+
     @Test
     public void NavigateToMyAccount() {
         driver.navigate().to("http://www.selenium-shop.pl/moje-konto/");
@@ -49,6 +50,7 @@ public class NavigateTests {
         driver.navigate().back();
         Assertions.assertEquals("Selenium Shop Automatyzacja Testów", driver.getTitle());
     }
+
     @Test
     public void NavigateToShop() {
         driver.navigate().to("http://www.selenium-shop.pl/sklep/");

@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -8,8 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.Random;
 
 
-public class RegistrationTest {
-    static WebDriver driver;
+public class RegistrationTests {
+    WebDriver driver;
     public static final String BUTTONMYACCOUNT = "menu-item-136";
     public static final String CONFIRMREGISTRATION = "//*[@class='woocommerce-Button woocommerce-button button woocommerce-form-register__submit' and @name='register']";
     public static final String ALERT = "//*[@class='woocommerce-error' and @role='alert']";
@@ -18,13 +19,14 @@ public class RegistrationTest {
 
     @BeforeAll
     static void setupAll() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless", "--window-size=1920,1200");
-        driver = new ChromeDriver(options);
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
     void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless", "start-maximized");
+        driver = new ChromeDriver(options);
         driver.get("http://www.selenium-shop.pl/");
         driver.findElement(By.id(BUTTONMYACCOUNT)).click();
     }
@@ -35,12 +37,12 @@ public class RegistrationTest {
     }
 
     @Test
-    @Description("PrÃ³ba wysÂ³ania formularza bez wypeÂ³nienia pola e-mail")
+    @Description("Próba wys³ania formularza bez wype³nienia pola e-mail")
     public void RegistrationNoData() {
 
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("BÂ³Â¹d: Podaj poprawny adres e-mail.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("B³¹d: Podaj poprawny adres e-mail.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -54,18 +56,18 @@ public class RegistrationTest {
 
         Assertions.assertTrue(driver.findElement(By.className("woocommerce-MyAccount-navigation")).isDisplayed());
 
-        driver.findElement(By.linkText("Wyloguj siÃª")).click();
+        driver.findElement(By.linkText("Wyloguj siê")).click();
         Assertions.assertTrue(driver.findElement(By.xpath(CONFIRMREGISTRATION)).isDisplayed());
     }
 
     @Test
-    @Description("PrÃ³ba logowania 2x tym samym mailem")
+    @Description("Próba logowania 2x tym samym mailem")
     public void TwiceWithTheSameEmail() {
         driver.findElement(By.id(EMAILFIELD)).sendKeys("username@gmail.com");
 
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("BÂ³Â¹d: Konto z tym adresem e-mail juÂ¿ istnieje. Zaloguj siÃª.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("B³¹d: Konto z tym adresem e-mail ju¿ istnieje. Zaloguj siê.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -77,16 +79,16 @@ public class RegistrationTest {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("UwzglÃªdnij znak â€@â€ w adresie e-mail. W adresie â€username.gmail.comâ€ brakuje znaku â€@â€.", msg);
+        Assertions.assertEquals("Uwzglêdnij znak „@” w adresie e-mail. W adresie „username.gmail.com” brakuje znaku „@”.", msg);
     }
 
     @Test
-    @Description("Zbyt dÂ³ugi adres mail")
+    @Description("Zbyt d³ugi adres mail")
     public void TooLongMail() {
         driver.findElement(By.id(EMAILFIELD)).sendKeys("ussssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssser@gmail.com");
         driver.findElement(By.xpath(CONFIRMREGISTRATION)).click();
 
-        Assertions.assertEquals("BÂ³Â¹d: Nazwa uÂ¿ytkownika nie moÂ¿e byÃ¦ dÂ³uÂ¿sza niÂ¿ 60 znakÃ³w.", driver.findElement(By.xpath(ALERT)).getText());
+        Assertions.assertEquals("B³¹d: Nazwa u¿ytkownika nie mo¿e byæ d³u¿sza ni¿ 60 znaków.", driver.findElement(By.xpath(ALERT)).getText());
     }
 
     @Test
@@ -97,7 +99,7 @@ public class RegistrationTest {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("CzÃªÅ“Ã¦ przed znakiem â€@â€ nie moÂ¿e zawieraÃ¦ symbolu â€(â€.", msg);
+        Assertions.assertEquals("Czêœæ przed znakiem „@” nie mo¿e zawieraæ symbolu „(”.", msg);
     }
 
     @Test
@@ -108,6 +110,6 @@ public class RegistrationTest {
 
         msg = driver.findElement(By.id(EMAILFIELD)).getAttribute("validationMessage");
 
-        Assertions.assertEquals("CzÃªÅ“Ã¦ przed znakiem â€@â€ nie moÂ¿e zawieraÃ¦ symbolu â€ â€.", msg);
+        Assertions.assertEquals("Czêœæ przed znakiem „@” nie mo¿e zawieraæ symbolu „ ”.", msg);
     }
 }
