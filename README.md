@@ -3,7 +3,6 @@ To repozytorium zawiera testy automatyczne strony internetowej Selenium-Shop.pl.
 
 # Wymagania
 Aby uruchomić testy, wymagane są następujące narzędzia:
-
 <br>Język programowania Java (w wersji 8 lub nowszej)
 <br>Środowisko uruchomieniowe Java (JRE lub JDK)
 <br>Narzędzie do zarządzania zależnościami (Gradle)
@@ -22,7 +21,6 @@ Aby uruchomić testy, wymagane są następujące narzędzia:
 
 # Dostępne testy
 W repozytorium znajdują się następujące testy automatyczne:
-
 <br>test_ankiety - sprawdza funkcjonalność uzupełniania ankiety przez użytkownika oraz funkcjonalność działania na elementach
 <br>test_rejestracji - sprawdza funkcjonalność rejestracji nowego użytkownika
 <br>test_nawigacji - sprawdza funkcjonalność poruszania się po stronie 
