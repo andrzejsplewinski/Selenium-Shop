@@ -81,7 +81,8 @@ public class QuestionnaireTests {
                         "puma\n" +
                         "\n" +
                         "Komenatrz:\n" +
-                        "To jest komentarz do ankiety",
+                        "To jest komentarz do ankiety\n" +
+                        "OK",
                 info.getText());
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
