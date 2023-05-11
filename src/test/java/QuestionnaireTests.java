@@ -24,7 +24,7 @@ public class QuestionnaireTests {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
+        options.addArguments("headless", "start-maximized");
         driver = new ChromeDriver(options);
         driver.get("http://www.selenium-shop.pl/o-nas");
 
@@ -32,7 +32,7 @@ public class QuestionnaireTests {
 
     @AfterEach
     void teardown() {
-//         driver.quit();
+         driver.quit();
     }
 
     @Test
